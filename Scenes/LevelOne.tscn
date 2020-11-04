@@ -1,0 +1,532 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Textures/png/paddleBlu.png" type="Texture" id=1]
+[ext_resource path="res://MiniScenes/BrickOne.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Paddle.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/World.gd" type="Script" id=4]
+[ext_resource path="res://Backgrounds/PNG/CitySkyline.png" type="Texture" id=5]
+[ext_resource path="res://Music/Do-you-like-FM_1.ogg" type="AudioStream" id=6]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 25.0
+height = 160.0
+
+[sub_resource type="DynamicFontData" id=2]
+antialiased = false
+font_path = "res://Fonts/radiospacebitmap.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = SubResource( 2 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Paddle" type="KinematicBody2D" parent="."]
+position = Vector2( 928, 1024 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Paddle"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
+rotation = 1.5708
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Anchor" type="Position2D" parent="Paddle"]
+position = Vector2( 0, 32 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Collision" type="CollisionPolygon2D" parent="Walls"]
+polygon = PoolVector2Array( 0, 1152, -64, 1152, -64, -64, 1984, -64, 1984, 1152, 1920, 1152, 1920, 0, 0, 0 )
+
+[node name="Bricks" type="Node2D" parent="."]
+
+[node name="Brick" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 256 )
+
+[node name="Brick2" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 256 )
+
+[node name="Brick6" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 256 )
+
+[node name="Brick7" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 256 )
+
+[node name="Brick8" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 256 )
+
+[node name="Brick9" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 256 )
+
+[node name="Brick10" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 256 )
+
+[node name="Brick3" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 256 )
+
+[node name="Brick11" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 256 )
+
+[node name="Brick12" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 256 )
+
+[node name="Brick13" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 256 )
+
+[node name="Brick14" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 256 )
+
+[node name="Brick15" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 256 )
+
+[node name="Brick4" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 256 )
+
+[node name="Brick5" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 256 )
+
+[node name="Brick31" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 192 )
+
+[node name="Brick32" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 192 )
+
+[node name="Brick33" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 192 )
+
+[node name="Brick34" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 192 )
+
+[node name="Brick35" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 192 )
+
+[node name="Brick36" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 192 )
+
+[node name="Brick37" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 192 )
+
+[node name="Brick38" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 192 )
+
+[node name="Brick39" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 192 )
+
+[node name="Brick40" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 192 )
+
+[node name="Brick41" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 192 )
+
+[node name="Brick42" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 192 )
+
+[node name="Brick43" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 192 )
+
+[node name="Brick44" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 192 )
+
+[node name="Brick45" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 192 )
+
+[node name="Brick46" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 128 )
+
+[node name="Brick47" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 128 )
+
+[node name="Brick48" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 128 )
+
+[node name="Brick49" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 128 )
+
+[node name="Brick50" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 128 )
+
+[node name="Brick51" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 128 )
+
+[node name="Brick52" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 128 )
+
+[node name="Brick53" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 128 )
+
+[node name="Brick54" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 128 )
+
+[node name="Brick55" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 128 )
+
+[node name="Brick56" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 128 )
+
+[node name="Brick57" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 128 )
+
+[node name="Brick58" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 128 )
+
+[node name="Brick59" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 128 )
+
+[node name="Brick60" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 128 )
+
+[node name="Brick16" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 320 )
+
+[node name="Brick17" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 320 )
+
+[node name="Brick18" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 320 )
+
+[node name="Brick19" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 320 )
+
+[node name="Brick20" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 320 )
+
+[node name="Brick21" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 320 )
+
+[node name="Brick22" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 320 )
+
+[node name="Brick23" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 320 )
+
+[node name="Brick24" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 320 )
+
+[node name="Brick25" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 320 )
+
+[node name="Brick26" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 320 )
+
+[node name="Brick27" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 320 )
+
+[node name="Brick28" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 320 )
+
+[node name="Brick29" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 320 )
+
+[node name="Brick30" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 320 )
+
+[node name="Brick61" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 384 )
+
+[node name="Brick62" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 384 )
+
+[node name="Brick63" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 384 )
+
+[node name="Brick64" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 384 )
+
+[node name="Brick65" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 384 )
+
+[node name="Brick66" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 384 )
+
+[node name="Brick67" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 384 )
+
+[node name="Brick68" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 384 )
+
+[node name="Brick69" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 384 )
+
+[node name="Brick70" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 384 )
+
+[node name="Brick71" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 384 )
+
+[node name="Brick72" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 384 )
+
+[node name="Brick73" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 384 )
+
+[node name="Brick74" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 384 )
+
+[node name="Brick75" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 384 )
+
+[node name="Brick76" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 448 )
+
+[node name="Brick77" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 448 )
+
+[node name="Brick78" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 448 )
+
+[node name="Brick79" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 448 )
+
+[node name="Brick80" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 448 )
+
+[node name="Brick81" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 448 )
+
+[node name="Brick82" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 448 )
+
+[node name="Brick83" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 448 )
+
+[node name="Brick84" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 448 )
+
+[node name="Brick85" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 448 )
+
+[node name="Brick86" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 448 )
+
+[node name="Brick87" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 448 )
+
+[node name="Brick88" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 448 )
+
+[node name="Brick89" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 448 )
+
+[node name="Brick90" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 448 )
+
+[node name="Score" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 72.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 3 )
+text = "Score: 0
+"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+margin_right = 1921.0
+margin_bottom = 1080.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
+[editable path="Bricks/Brick"]
+
+[editable path="Bricks/Brick2"]
+
+[editable path="Bricks/Brick6"]
+
+[editable path="Bricks/Brick7"]
+
+[editable path="Bricks/Brick8"]
+
+[editable path="Bricks/Brick9"]
+
+[editable path="Bricks/Brick10"]
+
+[editable path="Bricks/Brick3"]
+
+[editable path="Bricks/Brick11"]
+
+[editable path="Bricks/Brick12"]
+
+[editable path="Bricks/Brick13"]
+
+[editable path="Bricks/Brick14"]
+
+[editable path="Bricks/Brick15"]
+
+[editable path="Bricks/Brick4"]
+
+[editable path="Bricks/Brick5"]
+
+[editable path="Bricks/Brick31"]
+
+[editable path="Bricks/Brick32"]
+
+[editable path="Bricks/Brick33"]
+
+[editable path="Bricks/Brick34"]
+
+[editable path="Bricks/Brick35"]
+
+[editable path="Bricks/Brick36"]
+
+[editable path="Bricks/Brick37"]
+
+[editable path="Bricks/Brick38"]
+
+[editable path="Bricks/Brick39"]
+
+[editable path="Bricks/Brick40"]
+
+[editable path="Bricks/Brick41"]
+
+[editable path="Bricks/Brick42"]
+
+[editable path="Bricks/Brick43"]
+
+[editable path="Bricks/Brick44"]
+
+[editable path="Bricks/Brick45"]
+
+[editable path="Bricks/Brick46"]
+
+[editable path="Bricks/Brick47"]
+
+[editable path="Bricks/Brick48"]
+
+[editable path="Bricks/Brick49"]
+
+[editable path="Bricks/Brick50"]
+
+[editable path="Bricks/Brick51"]
+
+[editable path="Bricks/Brick52"]
+
+[editable path="Bricks/Brick53"]
+
+[editable path="Bricks/Brick54"]
+
+[editable path="Bricks/Brick55"]
+
+[editable path="Bricks/Brick56"]
+
+[editable path="Bricks/Brick57"]
+
+[editable path="Bricks/Brick58"]
+
+[editable path="Bricks/Brick59"]
+
+[editable path="Bricks/Brick60"]
+
+[editable path="Bricks/Brick16"]
+
+[editable path="Bricks/Brick17"]
+
+[editable path="Bricks/Brick18"]
+
+[editable path="Bricks/Brick19"]
+
+[editable path="Bricks/Brick20"]
+
+[editable path="Bricks/Brick21"]
+
+[editable path="Bricks/Brick22"]
+
+[editable path="Bricks/Brick23"]
+
+[editable path="Bricks/Brick24"]
+
+[editable path="Bricks/Brick25"]
+
+[editable path="Bricks/Brick26"]
+
+[editable path="Bricks/Brick27"]
+
+[editable path="Bricks/Brick28"]
+
+[editable path="Bricks/Brick29"]
+
+[editable path="Bricks/Brick30"]
+
+[editable path="Bricks/Brick61"]
+
+[editable path="Bricks/Brick62"]
+
+[editable path="Bricks/Brick63"]
+
+[editable path="Bricks/Brick64"]
+
+[editable path="Bricks/Brick65"]
+
+[editable path="Bricks/Brick66"]
+
+[editable path="Bricks/Brick67"]
+
+[editable path="Bricks/Brick68"]
+
+[editable path="Bricks/Brick69"]
+
+[editable path="Bricks/Brick70"]
+
+[editable path="Bricks/Brick71"]
+
+[editable path="Bricks/Brick72"]
+
+[editable path="Bricks/Brick73"]
+
+[editable path="Bricks/Brick74"]
+
+[editable path="Bricks/Brick75"]
+
+[editable path="Bricks/Brick76"]
+
+[editable path="Bricks/Brick77"]
+
+[editable path="Bricks/Brick78"]
+
+[editable path="Bricks/Brick79"]
+
+[editable path="Bricks/Brick80"]
+
+[editable path="Bricks/Brick81"]
+
+[editable path="Bricks/Brick82"]
+
+[editable path="Bricks/Brick83"]
+
+[editable path="Bricks/Brick84"]
+
+[editable path="Bricks/Brick85"]
+
+[editable path="Bricks/Brick86"]
+
+[editable path="Bricks/Brick87"]
+
+[editable path="Bricks/Brick88"]
+
+[editable path="Bricks/Brick89"]
+
+[editable path="Bricks/Brick90"]
