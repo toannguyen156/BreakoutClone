@@ -4,7 +4,7 @@ extends RigidBody2D
 # Declare member variables here. Examples:
 export var speedup = 100
 export var maxspeed = 2000
-
+var bounce_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,8 +17,17 @@ func _physics_process(_delta):
 	
 	for body in bodies:
 		if body.is_in_group("Bricks"):
-			get_node("/root/World").score += 100
-			body.queue_free()
+			if body.get_name() == "Brick7" or body.get_name() == "Brick4" or body.get_name() == "Brick33" or \
+			body.get_name() == "Brick80" or body.get_name() == "Brick75" or body.get_name() == "Brick90" or \
+			body.get_name() == "Brick24" or body.get_name() == "Brick41": #Bricks that die in 2 hits
+				bounce_count += 1
+				if bounce_count == 2:
+					body.queue_free() #destroy the brick
+					bounce_count = 0;
+					
+			else: #not the double-life-bricks
+				get_node("/root/World").score += 100
+				body.queue_free() #destroy the brick
 			
 		if body.get_name() == "Paddle":
 			var speed = get_linear_velocity().length()
