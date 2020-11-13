@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Textures/png/paddleBlu.png" type="Texture" id=1]
 [ext_resource path="res://MiniScenes/BrickOne.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/World.gd" type="Script" id=4]
 [ext_resource path="res://Backgrounds/PNG/CitySkyline.png" type="Texture" id=5]
 [ext_resource path="res://Music/Do-you-like-FM_1.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Textures/png/element_red_rectangle.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 25.0
@@ -65,6 +66,9 @@ position = Vector2( 576, 256 )
 [node name="Brick7" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 320, 256 )
 
+[node name="Sprite" parent="Bricks/Brick7" index="0"]
+texture = ExtResource( 7 )
+
 [node name="Brick8" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 448, 256 )
 
@@ -95,6 +99,9 @@ position = Vector2( 1856, 256 )
 [node name="Brick4" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 1088, 256 )
 
+[node name="Sprite" parent="Bricks/Brick4" index="0"]
+texture = ExtResource( 7 )
+
 [node name="Brick5" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 832, 256 )
 
@@ -106,6 +113,9 @@ position = Vector2( 704, 192 )
 
 [node name="Brick33" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 576, 192 )
+
+[node name="Sprite" parent="Bricks/Brick33" index="0"]
+texture = ExtResource( 7 )
 
 [node name="Brick34" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 320, 192 )
@@ -130,6 +140,9 @@ position = Vector2( 1472, 192 )
 
 [node name="Brick41" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 1600, 192 )
+
+[node name="Sprite" parent="Bricks/Brick41" index="0"]
+texture = ExtResource( 7 )
 
 [node name="Brick42" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 1728, 192 )
@@ -215,6 +228,9 @@ position = Vector2( 1216, 320 )
 [node name="Brick24" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 1344, 320 )
 
+[node name="Sprite" parent="Bricks/Brick24" index="0"]
+texture = ExtResource( 7 )
+
 [node name="Brick25" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 1472, 320 )
 
@@ -278,6 +294,9 @@ position = Vector2( 1088, 384 )
 [node name="Brick75" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 832, 384 )
 
+[node name="Sprite" parent="Bricks/Brick75" index="0"]
+texture = ExtResource( 7 )
+
 [node name="Brick76" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 960, 448 )
 
@@ -292,6 +311,9 @@ position = Vector2( 320, 448 )
 
 [node name="Brick80" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 448, 448 )
+
+[node name="Sprite" parent="Bricks/Brick80" index="0"]
+texture = ExtResource( 7 )
 
 [node name="Brick81" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 192, 448 )
@@ -322,6 +344,9 @@ position = Vector2( 1088, 448 )
 
 [node name="Brick90" parent="Bricks" instance=ExtResource( 2 )]
 position = Vector2( 832, 448 )
+
+[node name="Sprite" parent="Bricks/Brick90" index="0"]
+texture = ExtResource( 7 )
 
 [node name="Score" type="Label" parent="."]
 margin_left = 32.0
