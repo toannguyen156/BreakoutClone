@@ -1,0 +1,739 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Textures/png/paddleBlu.png" type="Texture" id=1]
+[ext_resource path="res://MiniScenes/BrickOne.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Textures/png/element_blue_rectangle.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/World.gd" type="Script" id=4]
+[ext_resource path="res://Backgrounds/PNG/CitySkyline.png" type="Texture" id=5]
+[ext_resource path="res://Music/Do-you-like-FM_1.ogg" type="AudioStream" id=6]
+[ext_resource path="res://SoundEffects/PaddleHit.wav" type="AudioStream" id=7]
+[ext_resource path="res://Scripts/Paddle2.gd" type="Script" id=8]
+[ext_resource path="res://SoundEffects/BrickHit.wav" type="AudioStream" id=9]
+[ext_resource path="res://SoundEffects/Zander-Noriega-Jazz-Solo-Game-Over.wav" type="AudioStream" id=10]
+[ext_resource path="res://SoundEffects/WallHit.wav" type="AudioStream" id=11]
+[ext_resource path="res://Textures/png/element_red_rectangle.png" type="Texture" id=12]
+[ext_resource path="res://Textures/png/element_yellow_rectangle.png" type="Texture" id=13]
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends KinematicBody2D
+
+
+# Declare member variables here. Examples:
+
+const ball_scene = preload(\"res://MiniScenes/Ball2.tscn\")
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	set_physics_process(true)
+	set_process_input(true)
+	
+func _physics_process(_delta):
+	var y = get_position().y
+	var mouse_x = get_viewport().get_mouse_position().x
+	set_position(Vector2(mouse_x, y))
+
+func _input(_event):
+	if Input.is_action_just_pressed(\"left click\") && get_node(\"/root/World\").current_ball_count == 0:
+		var ball = ball_scene.instance()
+		ball.set_position(get_position() - Vector2(0, 16))
+		get_tree().get_root().add_child(ball)
+		get_node(\"/root/World\").current_ball_count += 1
+	
+		
+"
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 25.0
+height = 160.0
+
+[sub_resource type="DynamicFontData" id=2]
+antialiased = false
+font_path = "res://Fonts/radiospacebitmap.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = SubResource( 2 )
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://Fonts/radiospacebitmap.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+font_data = SubResource( 4 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Paddle" type="KinematicBody2D" parent="."]
+position = Vector2( 928, 1024 )
+script = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="Paddle"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
+rotation = 1.5708
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Anchor" type="Position2D" parent="Paddle"]
+position = Vector2( 0, 32 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PaddleHit" type="AudioStreamPlayer" parent="Paddle"]
+stream = ExtResource( 7 )
+volume_db = -15.0
+
+[node name="Paddle2" type="KinematicBody2D" parent="."]
+position = Vector2( 930.52, 31.1821 )
+script = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Paddle2"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle2"]
+rotation = 1.5708
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Anchor" type="Position2D" parent="Paddle2"]
+position = Vector2( 0, 32 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PaddleHit" type="AudioStreamPlayer" parent="Paddle2"]
+stream = ExtResource( 7 )
+volume_db = -15.0
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Collision" type="CollisionPolygon2D" parent="Walls"]
+polygon = PoolVector2Array( 0, 1152, -64, 1152, -64, -64, 950.734, -374.421, 1984, -64, 1984, 1152, 1920, 1152, 1920, 0, 948.749, -310.204, 0, 0 )
+
+[node name="WallHit" type="AudioStreamPlayer" parent="Walls"]
+stream = ExtResource( 11 )
+volume_db = -10.0
+
+[node name="Bricks" type="Node2D" parent="."]
+
+[node name="Brick" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 472.436 )
+
+[node name="Brick2" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 472.436 )
+
+[node name="Brick6" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 472.436 )
+
+[node name="Sprite" parent="Bricks/Brick6" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick7" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 472.436 )
+
+[node name="Sprite" parent="Bricks/Brick7" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick8" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 472.436 )
+
+[node name="Brick9" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 472.436 )
+
+[node name="Brick10" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 472.436 )
+
+[node name="Sprite" parent="Bricks/Brick10" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick3" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 472.436 )
+
+[node name="Brick11" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 472.436 )
+
+[node name="Sprite" parent="Bricks/Brick11" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick12" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 472.436 )
+
+[node name="Sprite" parent="Bricks/Brick12" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Brick13" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 472.436 )
+
+[node name="Sprite" parent="Bricks/Brick13" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick14" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 472.436 )
+
+[node name="Brick15" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 472.436 )
+
+[node name="Sprite" parent="Bricks/Brick15" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick4" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 472.436 )
+
+[node name="Sprite" parent="Bricks/Brick4" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick5" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 472.436 )
+
+[node name="Sprite" parent="Bricks/Brick5" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick31" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 408.436 )
+
+[node name="Sprite" parent="Bricks/Brick31" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick32" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 408.436 )
+
+[node name="Sprite" parent="Bricks/Brick32" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick33" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 408.436 )
+
+[node name="Brick34" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 408.436 )
+
+[node name="Brick35" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 408.436 )
+
+[node name="Sprite" parent="Bricks/Brick35" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick36" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 408.436 )
+
+[node name="Sprite" parent="Bricks/Brick36" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick37" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 408.436 )
+
+[node name="Brick38" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 408.436 )
+
+[node name="Sprite" parent="Bricks/Brick38" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick39" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 408.436 )
+
+[node name="Brick40" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 408.436 )
+
+[node name="Sprite" parent="Bricks/Brick40" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick41" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 408.436 )
+
+[node name="Sprite" parent="Bricks/Brick41" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Brick42" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 408.436 )
+
+[node name="Sprite" parent="Bricks/Brick42" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick43" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 408.436 )
+
+[node name="Brick44" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 408.436 )
+
+[node name="Brick45" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 408.436 )
+
+[node name="Brick46" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 344.436 )
+
+[node name="Brick47" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 344.436 )
+
+[node name="Brick48" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 344.436 )
+
+[node name="Sprite" parent="Bricks/Brick48" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick49" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 344.436 )
+
+[node name="Sprite" parent="Bricks/Brick49" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick50" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 344.436 )
+
+[node name="Brick51" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 344.436 )
+
+[node name="Brick52" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 344.436 )
+
+[node name="Sprite" parent="Bricks/Brick52" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick53" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 344.436 )
+
+[node name="Brick54" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 344.436 )
+
+[node name="Sprite" parent="Bricks/Brick54" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick55" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 344.436 )
+
+[node name="Brick56" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 344.436 )
+
+[node name="Sprite" parent="Bricks/Brick56" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick57" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 344.436 )
+
+[node name="Brick58" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 344.436 )
+
+[node name="Sprite" parent="Bricks/Brick58" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick59" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 344.436 )
+
+[node name="Sprite" parent="Bricks/Brick59" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick60" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 344.436 )
+
+[node name="Sprite" parent="Bricks/Brick60" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Brick16" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 536.436 )
+
+[node name="Sprite" parent="Bricks/Brick16" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick17" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 536.436 )
+
+[node name="Sprite" parent="Bricks/Brick17" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick18" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 536.436 )
+
+[node name="Brick19" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 536.436 )
+
+[node name="Brick20" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 536.436 )
+
+[node name="Sprite" parent="Bricks/Brick20" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick21" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 536.436 )
+
+[node name="Sprite" parent="Bricks/Brick21" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick22" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 536.436 )
+
+[node name="Brick23" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 536.436 )
+
+[node name="Sprite" parent="Bricks/Brick23" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick24" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 536.436 )
+
+[node name="Brick25" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 536.436 )
+
+[node name="Sprite" parent="Bricks/Brick25" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick26" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 536.436 )
+
+[node name="Brick27" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 536.436 )
+
+[node name="Sprite" parent="Bricks/Brick27" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Brick28" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 536.436 )
+
+[node name="Brick29" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 536.436 )
+
+[node name="Sprite" parent="Bricks/Brick29" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Brick30" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 536.436 )
+
+[node name="Brick61" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 600.436 )
+
+[node name="Brick62" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 598.191 )
+
+[node name="Sprite" parent="Bricks/Brick62" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Brick63" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 600.436 )
+
+[node name="Brick64" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 600.436 )
+
+[node name="Brick65" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 600.436 )
+
+[node name="Brick66" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 600.436 )
+
+[node name="Brick67" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 600.436 )
+
+[node name="Brick68" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 600.436 )
+
+[node name="Sprite" parent="Bricks/Brick68" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Brick69" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 600.436 )
+
+[node name="Brick70" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 600.436 )
+
+[node name="Brick71" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 600.436 )
+
+[node name="Brick72" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 600.436 )
+
+[node name="Brick73" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 600.436 )
+
+[node name="Brick74" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 600.436 )
+
+[node name="Brick75" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 600.436 )
+
+[node name="Brick76" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 960, 664.436 )
+
+[node name="Brick77" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 704, 664.436 )
+
+[node name="Sprite" parent="Bricks/Brick77" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Brick78" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 576, 664.436 )
+
+[node name="Brick79" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 320, 664.436 )
+
+[node name="Brick80" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 448, 664.436 )
+
+[node name="Brick81" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 192, 664.436 )
+
+[node name="Brick82" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 64, 664.436 )
+
+[node name="Brick83" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1216, 664.436 )
+
+[node name="Brick84" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1344, 664.436 )
+
+[node name="Brick85" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1472, 664.436 )
+
+[node name="Brick86" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1600, 664.436 )
+
+[node name="Brick87" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1728, 664.436 )
+
+[node name="Brick88" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1856, 664.436 )
+
+[node name="Brick89" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 1088, 664.436 )
+
+[node name="Brick90" parent="Bricks" instance=ExtResource( 2 )]
+position = Vector2( 832, 664.436 )
+
+[node name="Score" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 72.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 3 )
+text = "SCORE: 0
+"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+margin_right = 1921.0
+margin_bottom = 1080.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -17.5
+autoplay = true
+
+[node name="Life" type="Label" parent="."]
+margin_left = 1696.0
+margin_top = 32.0
+margin_right = 1884.0
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 5 )
+text = "LIFE: 3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BrickHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -15.0
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -10.0
+
+[editable path="Bricks/Brick"]
+
+[editable path="Bricks/Brick2"]
+
+[editable path="Bricks/Brick6"]
+
+[editable path="Bricks/Brick7"]
+
+[editable path="Bricks/Brick8"]
+
+[editable path="Bricks/Brick9"]
+
+[editable path="Bricks/Brick10"]
+
+[editable path="Bricks/Brick3"]
+
+[editable path="Bricks/Brick11"]
+
+[editable path="Bricks/Brick12"]
+
+[editable path="Bricks/Brick13"]
+
+[editable path="Bricks/Brick14"]
+
+[editable path="Bricks/Brick15"]
+
+[editable path="Bricks/Brick4"]
+
+[editable path="Bricks/Brick5"]
+
+[editable path="Bricks/Brick31"]
+
+[editable path="Bricks/Brick32"]
+
+[editable path="Bricks/Brick33"]
+
+[editable path="Bricks/Brick34"]
+
+[editable path="Bricks/Brick35"]
+
+[editable path="Bricks/Brick36"]
+
+[editable path="Bricks/Brick37"]
+
+[editable path="Bricks/Brick38"]
+
+[editable path="Bricks/Brick39"]
+
+[editable path="Bricks/Brick40"]
+
+[editable path="Bricks/Brick41"]
+
+[editable path="Bricks/Brick42"]
+
+[editable path="Bricks/Brick43"]
+
+[editable path="Bricks/Brick44"]
+
+[editable path="Bricks/Brick45"]
+
+[editable path="Bricks/Brick46"]
+
+[editable path="Bricks/Brick47"]
+
+[editable path="Bricks/Brick48"]
+
+[editable path="Bricks/Brick49"]
+
+[editable path="Bricks/Brick50"]
+
+[editable path="Bricks/Brick51"]
+
+[editable path="Bricks/Brick52"]
+
+[editable path="Bricks/Brick53"]
+
+[editable path="Bricks/Brick54"]
+
+[editable path="Bricks/Brick55"]
+
+[editable path="Bricks/Brick56"]
+
+[editable path="Bricks/Brick57"]
+
+[editable path="Bricks/Brick58"]
+
+[editable path="Bricks/Brick59"]
+
+[editable path="Bricks/Brick60"]
+
+[editable path="Bricks/Brick16"]
+
+[editable path="Bricks/Brick17"]
+
+[editable path="Bricks/Brick18"]
+
+[editable path="Bricks/Brick19"]
+
+[editable path="Bricks/Brick20"]
+
+[editable path="Bricks/Brick21"]
+
+[editable path="Bricks/Brick22"]
+
+[editable path="Bricks/Brick23"]
+
+[editable path="Bricks/Brick24"]
+
+[editable path="Bricks/Brick25"]
+
+[editable path="Bricks/Brick26"]
+
+[editable path="Bricks/Brick27"]
+
+[editable path="Bricks/Brick28"]
+
+[editable path="Bricks/Brick29"]
+
+[editable path="Bricks/Brick30"]
+
+[editable path="Bricks/Brick61"]
+
+[editable path="Bricks/Brick62"]
+
+[editable path="Bricks/Brick63"]
+
+[editable path="Bricks/Brick64"]
+
+[editable path="Bricks/Brick65"]
+
+[editable path="Bricks/Brick66"]
+
+[editable path="Bricks/Brick67"]
+
+[editable path="Bricks/Brick68"]
+
+[editable path="Bricks/Brick69"]
+
+[editable path="Bricks/Brick70"]
+
+[editable path="Bricks/Brick71"]
+
+[editable path="Bricks/Brick72"]
+
+[editable path="Bricks/Brick73"]
+
+[editable path="Bricks/Brick74"]
+
+[editable path="Bricks/Brick75"]
+
+[editable path="Bricks/Brick76"]
+
+[editable path="Bricks/Brick77"]
+
+[editable path="Bricks/Brick78"]
+
+[editable path="Bricks/Brick79"]
+
+[editable path="Bricks/Brick80"]
+
+[editable path="Bricks/Brick81"]
+
+[editable path="Bricks/Brick82"]
+
+[editable path="Bricks/Brick83"]
+
+[editable path="Bricks/Brick84"]
+
+[editable path="Bricks/Brick85"]
+
+[editable path="Bricks/Brick86"]
+
+[editable path="Bricks/Brick87"]
+
+[editable path="Bricks/Brick88"]
+
+[editable path="Bricks/Brick89"]
+
+[editable path="Bricks/Brick90"]

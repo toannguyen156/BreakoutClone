@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BrickHit2.wav-6d1ba06c44bfb179618788c68d49aa7e.sample"
+
+[deps]
+
+source_file="res://SoundEffects/BrickHit2.wav"
+dest_files=[ "res://.import/BrickHit2.wav-6d1ba06c44bfb179618788c68d49aa7e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

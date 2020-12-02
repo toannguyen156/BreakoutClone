@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/WallHit.wav-0e6b17dadef975e4fae180201359c919.sample"
+
+[deps]
+
+source_file="res://SoundEffects/WallHit.wav"
+dest_files=[ "res://.import/WallHit.wav-0e6b17dadef975e4fae180201359c919.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
